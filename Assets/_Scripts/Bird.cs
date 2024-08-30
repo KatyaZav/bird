@@ -2,30 +2,35 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rb;
+    [Header("Settings")]
+    [SerializeField] private Rigidbody2D _rigidbody;
 
     [SerializeField] private Vector2 _upperForce;
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
 
+    [Space(10) ,Header("Points")]
+    [SerializeField] private int _topJump = 1;
+    [SerializeField] private int _sideJump = 3;
+
     private bool _isLive;
     
     public int Points {  get; private set; }
     
-    public void Win()
+    public void Stop()
     {
         _isLive = false;
-        _rb.isKinematic = true;
-        _rb.velocity = Vector2.zero;
+        _rigidbody.isKinematic = true;
+        _rigidbody.velocity = Vector2.zero;
     }
 
     public void Reset()
     {
         _isLive = true;  
-        _rb.isKinematic = false;
+        _rigidbody.isKinematic = false;
 
         transform.position = Vector2.zero;
-        _rb.velocity = Vector2.zero;
+        _rigidbody.velocity = Vector2.zero;
 
         gameObject.SetActive(true);
 
@@ -36,51 +41,50 @@ public class Bird : MonoBehaviour
     {
         Debug.Log("Bird is dead. Points: " + Points);
 
-        _isLive = false;
-        _rb.isKinematic = true;
-
+        Stop();
         gameObject.SetActive(false);
     }
 
     private void Update()
-    {
-        int topJump = 1;
-        int sideJump = 3;
-
+    {      
         if (_isLive == false)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            AddPoint(topJump);
+            AddPoint(_topJump);
             MoveWithResetVelocity(_upperForce);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            AddPoint(sideJump);
+            AddPoint(_sideJump);
             MoveWithResetVelocity(_rightForce);
         }
 
         if (Input.GetKeyDown(KeyCode.D))
         {
-            AddPoint(sideJump);
+            AddPoint(_sideJump);
             MoveWithResetVelocity(_leftForce);
         }
+    }
+    private void OnValidate()
+    {
+      _rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void MoveWithResetVelocity(Vector2 moveDirection)
     {
-        Vector2 resetVelocity = new Vector2(moveDirection.x == 0? _rb.velocity.x : 0,
-                                             moveDirection.y == 0? _rb.velocity.y : 0);
+        Vector2 resetVelocity = new Vector2(moveDirection.x == 0? _rigidbody.velocity.x : 0,
+                                             moveDirection.y == 0? _rigidbody.velocity.y : 0);
 
-        _rb.velocity = resetVelocity;
+        _rigidbody.velocity = resetVelocity;
         Move(moveDirection);
     }
 
     private void Move(Vector2 moveDirection)
     {
-        _rb.AddForce(moveDirection, ForceMode2D.Impulse);
+        _rigidbody.AddForce(moveDirection, ForceMode2D.Impulse);
     }
 
     private void AddPoint(int point)
@@ -88,8 +92,4 @@ public class Bird : MonoBehaviour
         Points += point;
     }
 
-    private void OnValidate()
-    {
-      _rb = GetComponent<Rigidbody2D>();
-    }
 }

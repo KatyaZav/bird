@@ -6,7 +6,7 @@ public class BirdController : MonoBehaviour
 {
     [SerializeField] private Bird _bird;
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
-    [SerializeField] private int _winPoints;
+    [SerializeField] private int _pointsToWin;
 
     bool _isRunning;
 
@@ -32,10 +32,10 @@ public class BirdController : MonoBehaviour
             _isRunning = false;
         }
 
-        if (_bird.Points >= _winPoints)
+        if (_bird.Points >= _pointsToWin)
         {
             _isRunning = false;
-            _bird.Win();
+            _bird.Stop();
         }
     }
 
