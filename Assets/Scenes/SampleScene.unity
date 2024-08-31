@@ -259,7 +259,7 @@ MonoBehaviour:
   _bottomBorder: {fileID: 922320760}
   _leftBorder: {fileID: 321094028}
   _rightBorder: {fileID: 788659807}
-  _winPoints: 20
+  _pointsToWin: 10
 --- !u!4 &162642189
 Transform:
   m_ObjectHideFlags: 0
@@ -1041,10 +1041,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c8a1e059e354d0448317bcfa9fe238b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rb: {fileID: 1660438372}
+  _rigidbody: {fileID: 1660438372}
   _upperForce: {x: 0, y: 5}
   _leftForce: {x: 3, y: 0}
   _rightForce: {x: -3, y: 0}
+  _topJump: 1
+  _sideJump: 3
 --- !u!212 &1660438374
 SpriteRenderer:
   m_ObjectHideFlags: 0
