@@ -20,6 +20,9 @@ public class Bird : MonoBehaviour
     [SerializeField] private float _maxScale;
     [SerializeField] private float _scaleStep;
 
+    [Space(10), Header("Particles")]
+    [SerializeField] private GameObject _deadParticle;
+
     [Space(10) ,Header("Points")]
     [SerializeField] private int _topJump = 1;
     [SerializeField] private int _sideJump = 3;
@@ -51,6 +54,8 @@ public class Bird : MonoBehaviour
     public void MakeDead()
     {
         Debug.Log("Bird is dead. Points: " + Points);
+
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
 
         Stop();
         gameObject.SetActive(false);
