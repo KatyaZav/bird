@@ -1,13 +1,22 @@
+using System;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    private const string FlyTriggerName = "fly";
+
     [Header("Settings")]
     [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private Animator _animator;
 
     [SerializeField] private Vector2 _upperForce;
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
+
+    [Space(5)]
+    [SerializeField] private float _minScale;
+    [SerializeField] private float _maxScale;
+    [SerializeField] private float _scaleStep;
 
     [Space(10) ,Header("Points")]
     [SerializeField] private int _topJump = 1;
@@ -46,14 +55,18 @@ public class Bird : MonoBehaviour
     }
 
     private void Update()
-    {      
+    {
         if (_isLive == false)
             return;
+     
+        DownScale();
+        SwipeSide();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             AddPoint(_topJump);
             MoveWithResetVelocity(_upperForce);
+            UpScale();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -68,9 +81,40 @@ public class Bird : MonoBehaviour
             MoveWithResetVelocity(_leftForce);
         }
     }
+
     private void OnValidate()
     {
-      _rigidbody = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+    }
+    
+    private void SwipeSide()
+    {
+        if (_rigidbody.velocity.x > 0 && transform.localScale.x > 0 
+            ||
+            _rigidbody.velocity.x < 0 && transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3
+                (transform.localScale.x * -1,
+                transform.localScale.y,
+                transform.localScale.z);
+        }
+    }
+
+    private void DownScale()
+    {
+        transform.localScale -= Vector3.one * _scaleStep * Time.deltaTime;
+
+        if (transform.localScale.z < _minScale)
+            transform.localScale = Vector3.one * _minScale;
+    }
+
+    private void UpScale()
+    {
+        transform.localScale += Vector3.one * _scaleStep;
+        
+        if (transform.localScale.z > _maxScale)
+            transform.localScale = Vector3.one * _maxScale;
     }
 
     private void MoveWithResetVelocity(Vector2 moveDirection)
@@ -85,6 +129,7 @@ public class Bird : MonoBehaviour
     private void Move(Vector2 moveDirection)
     {
         _rigidbody.AddForce(moveDirection, ForceMode2D.Impulse);
+        _animator.SetTrigger(FlyTriggerName);
     }
 
     private void AddPoint(int point)
