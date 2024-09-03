@@ -13,6 +13,8 @@ public class Bird : MonoBehaviour
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
 
+    [SerializeField] private GameObject _birdArt;
+
     [Space(5)]
     [SerializeField] private float _minScale;
     [SerializeField] private float _maxScale;
@@ -84,20 +86,18 @@ public class Bird : MonoBehaviour
 
     private void OnValidate()
     {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+        _rigidbody ??= GetComponent<Rigidbody2D>();
+        _animator ??= GetComponent<Animator>();
     }
     
     private void SwipeSide()
     {
-        if (_rigidbody.velocity.x > 0 && transform.localScale.x > 0 
+        if (_rigidbody.velocity.x > 0 && _birdArt.transform.localScale.x > 0 
             ||
-            _rigidbody.velocity.x < 0 && transform.localScale.x < 0)
+            _rigidbody.velocity.x < 0 && _birdArt.transform.localScale.x < 0)
         {
-            transform.localScale = new Vector3
-                (transform.localScale.x * -1,
-                transform.localScale.y,
-                transform.localScale.z);
+            _birdArt.transform.localScale = new Vector3
+                (_birdArt.transform.localScale.x * -1,1,1);
         }
     }
 
