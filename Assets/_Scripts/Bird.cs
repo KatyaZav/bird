@@ -30,7 +30,26 @@ public class Bird : MonoBehaviour
     private bool _isLive;
     
     public int Points {  get; private set; }
-    
+
+    public void Jump()
+    {
+        AddPoint(_topJump);
+        MoveWithResetVelocity(_upperForce);
+        UpScale();
+    }
+
+    public void Swipe()
+    {
+        AddPoint(_sideJump);
+
+        if (_rigidbody.velocity.x > 0)
+            MoveWithResetVelocity(_rightForce);
+        else
+            MoveWithResetVelocity(_leftForce);
+
+        SwipeSide();
+    }
+
     public void Stop()
     {
         _isLive = false;
@@ -67,26 +86,6 @@ public class Bird : MonoBehaviour
             return;
      
         DownScale();
-        SwipeSide();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddPoint(_topJump);
-            MoveWithResetVelocity(_upperForce);
-            UpScale();
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            AddPoint(_sideJump);
-            MoveWithResetVelocity(_rightForce);
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            AddPoint(_sideJump);
-            MoveWithResetVelocity(_leftForce);
-        }
     }
 
     private void OnValidate()
@@ -141,5 +140,4 @@ public class Bird : MonoBehaviour
     {
         Points += point;
     }
-
 }
