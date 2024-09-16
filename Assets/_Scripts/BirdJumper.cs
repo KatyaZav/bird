@@ -14,6 +14,8 @@ public class BirdJumper : MonoBehaviour
 
     [SerializeField] private GameObject _birdArt;
 
+    public Vector3 Velocity => _rigidbody.velocity;
+
     public virtual void Jump()
     {
         MoveWithResetVelocity(_upperForce);
@@ -22,11 +24,28 @@ public class BirdJumper : MonoBehaviour
     public void Swipe()
     {
         if (_rigidbody.velocity.x > 0)
-            MoveWithResetVelocity(_leftForce);
+            TurnLeft();
         else
-            MoveWithResetVelocity(_rightForce);
+            TurnRight();
 
         SwipeSide();
+    }
+
+    public void TurnLeft()
+    {
+        MoveWithResetVelocity(_leftForce);
+        SwipeSide();
+    }
+
+    public void TurnRight()
+    {
+        MoveWithResetVelocity(_rightForce);
+        SwipeSide();
+    }
+
+    public void StopTurn()
+    {
+        _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
     }
 
     public void StopMove()

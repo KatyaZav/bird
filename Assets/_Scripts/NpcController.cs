@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NpcController : MonoBehaviour
@@ -7,8 +5,8 @@ public class NpcController : MonoBehaviour
     [SerializeField] private Transform _point;
     [SerializeField] private BirdJumper _bird;
     [SerializeField] private float _reactionTime;
+    [SerializeField] private float _maxDirection = 0.05f;
 
-    private bool _isRight;
     private float _timeSinceMove;
 
     void FixedUpdate()
@@ -24,19 +22,25 @@ public class NpcController : MonoBehaviour
             _timeSinceMove = 0;
         }
 
-        Debug.Log($"{transform.position.x}  {_point.transform.position.x} && {_isRight}");
-
-        if (transform.position.x < _point.transform.position.x && _isRight == false)
+        var direction = _point.transform.position - _bird.transform.position;
+        if (direction.magnitude <= _maxDirection)
         {
-            _bird.Swipe();
-            _isRight = true;
+            //.Log("turn stop");
+            _bird.StopTurn();
+            return;
+        }
+
+        if (transform.position.x < _point.transform.position.x && _bird.Velocity.x <= 0)
+        {
+            //Debug.Log("turn right");
+            _bird.TurnRight();
             _timeSinceMove = 0;
         }
 
-        if (transform.position.x < _point.transform.position.x && _isRight)
+        if (transform.position.x > _point.transform.position.x && _bird.Velocity.x >= 0)
         {
-            _bird.Swipe();
-            _isRight = false;
+            //Debug.Log("turn left");
+            _bird.TurnLeft();
             _timeSinceMove = 0;
         }
     }

@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 136934329}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.14, y: -0.01, z: -0.043200172}
+  m_LocalPosition: {x: -3.2, y: -0.01, z: -0.043200172}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -187,9 +187,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 241714611}
   _animator: {fileID: 962531394}
-  _upperForce: {x: 0, y: 4}
-  _leftForce: {x: 4, y: 0}
-  _rightForce: {x: -4, y: 0}
+  _upperForce: {x: 0, y: 2}
+  _leftForce: {x: -2, y: 0}
+  _rightForce: {x: 2, y: 0}
   _birdArt: {fileID: 962531391}
 --- !u!50 &241714611
 Rigidbody2D:
@@ -250,7 +250,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _point: {fileID: 136934330}
   _bird: {fileID: 241714610}
-  _reactionTime: 1.5
+  _reactionTime: 10
+  _maxDirection: 1
 --- !u!1 &296618623
 GameObject:
   m_ObjectHideFlags: 0
