@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Bird : MonoBehaviour
+public class BirdJumper : MonoBehaviour
 {
     private const string FlyTriggerName = "fly";
 
@@ -14,77 +14,44 @@ public class Bird : MonoBehaviour
 
     [SerializeField] private GameObject _birdArt;
 
-    [Space(5)]
-    [SerializeField] private float _minScale;
-    [SerializeField] private float _maxScale;
-    [SerializeField] private float _scaleStep;
-
-    [Space(10), Header("Particles")]
-    [SerializeField] private GameObject _deadParticle;
-
-    [Space(10) ,Header("Points")]
-    [SerializeField] private int _topJump = 1;
-    [SerializeField] private int _sideJump = 3;
-
-    private bool _isLive;
-    
-    public int Points {  get; private set; }
-
-    public void Jump()
+    public virtual void Jump()
     {
-        AddPoint(_topJump);
         MoveWithResetVelocity(_upperForce);
-        UpScale();
     }
 
     public void Swipe()
     {
-        AddPoint(_sideJump);
-
         if (_rigidbody.velocity.x > 0)
-            MoveWithResetVelocity(_rightForce);
-        else
             MoveWithResetVelocity(_leftForce);
+        else
+            MoveWithResetVelocity(_rightForce);
 
         SwipeSide();
     }
 
-    public void Stop()
+    public void StopMove()
     {
-        _isLive = false;
         _rigidbody.isKinematic = true;
         _rigidbody.velocity = Vector2.zero;
     }
 
-    public void Reset()
+    public void StartMove()
     {
-        _isLive = true;  
         _rigidbody.isKinematic = false;
 
         transform.position = Vector2.zero;
         _rigidbody.velocity = Vector2.zero;
+    }
 
+    public void Activate()
+    {
         gameObject.SetActive(true);
-
-        Points = 0;
     }
 
-    public void MakeDead()
+    public virtual void Deactivate()
     {
-        Debug.Log("Bird is dead. Points: " + Points);
-
-        Instantiate(_deadParticle, transform.position, Quaternion.identity);
-
-        Stop();
+        StopMove();
         gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        if (_isLive == false)
-            return;
-     
-        DownScale();
     }
 
     private void OnValidate()
@@ -102,23 +69,7 @@ public class Bird : MonoBehaviour
             _birdArt.transform.localScale = new Vector3
                 (_birdArt.transform.localScale.x * -1,1,1);
         }
-    }
-
-    private void DownScale()
-    {
-        transform.localScale -= Vector3.one * _scaleStep * Time.deltaTime;
-
-        if (transform.localScale.z < _minScale)
-            transform.localScale = Vector3.one * _minScale;
-    }
-
-    private void UpScale()
-    {
-        transform.localScale += Vector3.one * _scaleStep;
-        
-        if (transform.localScale.z > _maxScale)
-            transform.localScale = Vector3.one * _maxScale;
-    }
+    }   
 
     private void MoveWithResetVelocity(Vector2 moveDirection)
     {
@@ -133,10 +84,5 @@ public class Bird : MonoBehaviour
     {
         _rigidbody.AddForce(moveDirection, ForceMode2D.Impulse);
         _animator.SetTrigger(FlyTriggerName);
-    }
-
-    private void AddPoint(int point)
-    {
-        Points += point;
     }
 }

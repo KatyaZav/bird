@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class BirdController : MonoBehaviour
+public class BirdCheaker : MonoBehaviour
 {
-    [SerializeField] private Bird _bird;
+    [SerializeField] private BirdJumper _bird;
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
     [SerializeField] private int _pointsToWin;
 
@@ -16,7 +16,7 @@ public class BirdController : MonoBehaviour
     public void ResetGame()
     {
         _isRunning = true;
-        _bird.Reset();
+        _bird.StartMove();
     }
 
     private void Update()
@@ -26,14 +26,8 @@ public class BirdController : MonoBehaviour
 
         if (IsInBorder(_bird.transform) == false)
         {
-            _bird.MakeDead();
+            _bird.Deactivate();
             _isRunning = false;
-        }
-
-        if (_bird.Points >= _pointsToWin)
-        {
-            _isRunning = false;
-            _bird.Stop();
         }
     }
 
@@ -47,6 +41,6 @@ public class BirdController : MonoBehaviour
 
     private void OnValidate()
     {
-        _bird ??=FindAnyObjectByType<Bird>();
+        _bird ??=FindAnyObjectByType<BirdJumper>();
     }
 }
