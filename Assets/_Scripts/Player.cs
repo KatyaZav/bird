@@ -16,7 +16,12 @@ public class Player : BirdJumper
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
 
-    private bool _isLive = true;
+    public bool IsLive {get; private set;}
+
+    private void Awake()
+    {
+        IsLive = true;
+    }
 
     public override void Deactivate()
     {
@@ -31,14 +36,14 @@ public class Player : BirdJumper
 
     private void Update()
     {
-        if (_isLive == false)
+        if (IsLive == false)
             return;
 
         DownScale();
                 
         if ((transform.position - _npcBird.position).magnitude > _loseDistance)
         {
-            _isLive = false;
+            IsLive = false;
             Deactivate();
         }
     }

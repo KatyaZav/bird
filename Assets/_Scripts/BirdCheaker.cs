@@ -1,16 +1,23 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BirdCheaker : MonoBehaviour
 {
-    [SerializeField] private BirdJumper _bird;
+    [SerializeField] private Player _bird;
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
     [SerializeField] private int _pointsToWin;
+    [SerializeField] private Text _timerText;
+    [SerializeField] private int _needTime;
 
     bool _isRunning;
 
     private void Start()
     {
-        ResetGame();
+        _timerText.text = "Start";
+
+        //ResetGame();
+        StartCoroutine(Timer());
     }
 
     public void ResetGame()
@@ -31,6 +38,29 @@ public class BirdCheaker : MonoBehaviour
         }
     }
 
+    private IEnumerator Timer()
+    {        
+        bool isError = false;
+
+        while (_needTime > 0)
+        {
+            if (_bird.IsLive == false)
+            {
+                isError = true;
+                break;
+            }
+
+            _needTime--;
+            _timerText.text = _needTime.ToString();
+            yield return new WaitForSeconds(1);
+        }
+
+        if (isError)
+            _timerText.text = "Lose";
+        else
+            _timerText.text = "Win!";
+    }
+
     private bool IsInBorder(Transform obj)
     {
         return (obj.position.x > _leftBorder.position.x) 
@@ -41,6 +71,6 @@ public class BirdCheaker : MonoBehaviour
 
     private void OnValidate()
     {
-        _bird ??=FindAnyObjectByType<BirdJumper>();
+        _bird ??=FindAnyObjectByType<Player>();
     }
 }
