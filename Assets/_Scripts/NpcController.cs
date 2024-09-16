@@ -1,28 +1,52 @@
+using System;
 using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    [SerializeField] private Transform _point;
+    [SerializeField] private Transform[] _points;
     [SerializeField] private BirdJumper _bird;
     [SerializeField] private float _reactionTime;
     [SerializeField] private float _maxDirection = 0.05f;
 
+    [SerializeField] private float _minTime, _maxTime;
+    
+    private Transform _currentPoint;
+
     private float _timeSinceMove;
+    private float _timeSinceChangePoint;
+
+    private float _currentTime;
 
     void FixedUpdate()
     {
-        _timeSinceMove += Time.time;
+        _timeSinceMove += Time.deltaTime;
+        _timeSinceChangePoint += Time.deltaTime;
 
-        if (_reactionTime >= _timeSinceMove)
-            return;
+        if (_timeSinceChangePoint >= _currentTime)
+            ChangeMovePoint();
+        
+        if (_reactionTime < _timeSinceMove)
+            Move();
+    }
 
-        if (transform.position.y < _point.transform.position.y)
+    private void ChangeMovePoint()
+    {
+        _timeSinceChangePoint = 0;
+        _currentTime = UnityEngine.Random.Range(_minTime, _maxTime);
+
+        int index = UnityEngine.Random.Range(0, _points.Length);
+        _currentPoint = _points[index];
+    }
+
+    private void Move()
+    {
+        if (transform.position.y < _currentPoint.transform.position.y)
         {
             _bird.Jump();
             _timeSinceMove = 0;
         }
 
-        var direction = _point.transform.position - _bird.transform.position;
+        var direction = _currentPoint.transform.position - _bird.transform.position;
         if (direction.magnitude <= _maxDirection)
         {
             //.Log("turn stop");
@@ -30,14 +54,14 @@ public class NpcController : MonoBehaviour
             return;
         }
 
-        if (transform.position.x < _point.transform.position.x && _bird.Velocity.x <= 0)
+        if (transform.position.x < _currentPoint.transform.position.x && _bird.Velocity.x <= 0)
         {
             //Debug.Log("turn right");
             _bird.TurnRight();
             _timeSinceMove = 0;
         }
 
-        if (transform.position.x > _point.transform.position.x && _bird.Velocity.x >= 0)
+        if (transform.position.x > _currentPoint.transform.position.x && _bird.Velocity.x >= 0)
         {
             //Debug.Log("turn left");
             _bird.TurnLeft();

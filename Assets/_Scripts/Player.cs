@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : BirdJumper
 {
+    [SerializeField] private Transform _npcBird;
+
     [Space(5)]
     [SerializeField] private float _minScale;
     [SerializeField] private float _maxScale;
     [SerializeField] private float _scaleStep;
+    [SerializeField] private float _loseDistance;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
@@ -31,6 +35,12 @@ public class Player : BirdJumper
             return;
 
         DownScale();
+                
+        if ((transform.position - _npcBird.position).magnitude > _loseDistance)
+        {
+            _isLive = false;
+            Deactivate();
+        }
     }
 
     private void DownScale()
