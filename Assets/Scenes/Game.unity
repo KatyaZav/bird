@@ -396,7 +396,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.99308807, b: 0.3226415, a: 0.3019608}
+  m_Color: {r: 1, g: 0.99308807, b: 0.3226415, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -644,7 +644,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0.99308807, b: 0.3226415, a: 0.1882353}
+  m_Color: {r: 1, g: 0.99308807, b: 0.3226415, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1170,7 +1170,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 9
   m_Sprite: {fileID: -488558375, guid: 7236fa98e37c374488eb051f4b47ae92, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1376,12 +1376,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6496752a3bf0ca34a8cbd3634cf43037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _npcBird: {fileID: 241714612}
   _player: {fileID: 1033499429}
   _minScale: 0.4
   _maxScale: 0.5
   _scaleStep: 0.15
-  _loseDistance: 10
   _deadParticle: {fileID: 3017757107180097522, guid: fbef473a9324eaa40a1047a87f2174ca, type: 3}
 --- !u!114 &1033499429
 MonoBehaviour:
@@ -1445,6 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff409122234956744bc33ee2c12b5bf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcBird: {fileID: 0}
   _bird: {fileID: 1033499428}
   _topBorder: {fileID: 1309829676}
   _bottomBorder: {fileID: 1002385011}
@@ -1453,6 +1452,7 @@ MonoBehaviour:
   _pointsToWin: 1000
   _timerText: {fileID: 832322201}
   _needTime: 30
+  _loseDistance: 0
 --- !u!1 &1113552912
 GameObject:
   m_ObjectHideFlags: 0
@@ -1617,7 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpButton: 122
   _moveButton: 120
-  _bird: {fileID: 1033499429}
+  _bird: {fileID: 1033499428}
 --- !u!4 &1304707368
 Transform:
   m_ObjectHideFlags: 0
@@ -2010,7 +2010,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1665844574
 Transform:
   m_ObjectHideFlags: 0
