@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BirdJumper : MonoBehaviour
+public class Jumper : MonoBehaviour
 {
     private const string FlyTriggerName = "fly";
 

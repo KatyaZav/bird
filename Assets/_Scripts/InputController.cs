@@ -8,7 +8,7 @@ public class InputController : MonoBehaviour
 
     [Space(10)]
     [Header("Settings")]
-    [SerializeField] private BirdJumper _bird;
+    [SerializeField] private Jumper _bird;
 
     void Update()
     {

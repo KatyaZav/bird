@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : BirdJumper
+public class Player : Jumper
 {
     [SerializeField] private Transform _npcBird;
 

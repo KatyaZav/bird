@@ -4,7 +4,7 @@ using UnityEngine;
 public class NpcController : MonoBehaviour
 {
     [SerializeField] private Transform[] _points;
-    [SerializeField] private BirdJumper _bird;
+    [SerializeField] private Jumper _bird;
     [SerializeField] private float _reactionTime;
     [SerializeField] private float _maxDirection = 0.05f;
 
