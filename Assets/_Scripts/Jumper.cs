@@ -12,11 +12,11 @@ public class Jumper : MonoBehaviour
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
 
-    [SerializeField] private GameObject _birdArt;
+    [SerializeField] private Transform _birdView;
 
     public Vector3 Velocity => _rigidbody.velocity;
 
-    public virtual void Jump()
+    public void Jump()
     {
         MoveWithResetVelocity(_upperForce);
     }
@@ -77,16 +77,18 @@ public class Jumper : MonoBehaviour
     {
         _rigidbody ??= GetComponent<Rigidbody2D>();
         _animator ??= GetComponent<Animator>();
+        
+        _birdView ??= GetComponentInChildren<SpriteRenderer>().transform;
     }
     
     private void SwipeSide()
     {
-        if (_rigidbody.velocity.x > 0 && _birdArt.transform.localScale.x > 0 
+        if (_rigidbody.velocity.x > 0 && _birdView.localScale.x > 0 
             ||
-            _rigidbody.velocity.x < 0 && _birdArt.transform.localScale.x < 0)
+            _rigidbody.velocity.x < 0 && _birdView.localScale.x < 0)
         {
-            _birdArt.transform.localScale = new Vector3
-                (_birdArt.transform.localScale.x * -1,1,1);
+            _birdView.localScale = new Vector3
+                (_birdView.localScale.x * -1,1,1);
         }
     }   
 
