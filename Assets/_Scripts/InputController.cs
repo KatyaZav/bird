@@ -8,7 +8,7 @@ public class InputController : MonoBehaviour
 
     [Space(10)]
     [Header("Settings")]
-    [SerializeField] private Jumper _bird;
+    [SerializeField] private Player _bird;
 
     void Update()
     {
@@ -19,7 +19,7 @@ public class InputController : MonoBehaviour
 
         if (Input.GetKeyDown(_moveButton))
         {
-            _bird.Swipe();
+            _bird.PlayerJumper.Swipe();
         }
     }
 }

@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Jumper
+public class Player : MonoBehaviour
 {
     [SerializeField] private Transform _npcBird;
+    [SerializeField] private Jumper _player;
 
     [Space(5)]
     [SerializeField] private float _minScale;
@@ -18,19 +19,26 @@ public class Player : Jumper
 
     public bool IsLive {get; private set;}
 
+    public Jumper PlayerJumper  => _player; 
+
     private void Awake()
     {
         IsLive = true;
     }
 
-    public override void Deactivate()
+    public void StartMove()
+    {
+        _player.StartMove();
+    }
+
+    public void Deactivate()
     {
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
-        base.Deactivate();
+        _player.Deactivate();
     }
-    public override void Jump()
+    public void Jump()
     {
-        base.Jump();
+        _player.Jump();
         UpScale();
     }
 

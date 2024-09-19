@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 241714612}
   - component: {fileID: 241714611}
   - component: {fileID: 241714613}
-  - component: {fileID: 241714610}
+  - component: {fileID: 241714614}
   m_Layer: 0
   m_Name: bird npc
   m_TagString: Untagged
@@ -235,24 +235,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &241714610
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241714609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be30a911c3779304794cd4ec1135acfa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rigidbody: {fileID: 241714611}
-  _animator: {fileID: 962531394}
-  _upperForce: {x: 0, y: 2}
-  _leftForce: {x: -2, y: 0}
-  _rightForce: {x: 2, y: 0}
-  _birdArt: {fileID: 962531391}
 --- !u!50 &241714611
 Rigidbody2D:
   serializedVersion: 4
@@ -316,11 +298,29 @@ MonoBehaviour:
   - {fileID: 2135978130}
   - {fileID: 605295919}
   - {fileID: 1878312}
-  _bird: {fileID: 241714610}
+  _bird: {fileID: 241714614}
   _reactionTime: 0.1
   _maxDirection: 1
   _minTime: 4
   _maxTime: 9
+--- !u!114 &241714614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241714609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f0cd9f2fe5cc341bcfba0790ab04ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 241714611}
+  _animator: {fileID: 962531394}
+  _upperForce: {x: 0, y: 2}
+  _leftForce: {x: -2, y: 0}
+  _rightForce: {x: 2, y: 0}
+  _birdView: {fileID: 962531393}
 --- !u!1 &296618623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1312,7 @@ GameObject:
   - component: {fileID: 1033499425}
   - component: {fileID: 1033499427}
   - component: {fileID: 1033499428}
+  - component: {fileID: 1033499429}
   m_Layer: 0
   m_Name: bird
   m_TagString: Untagged
@@ -1329,7 +1330,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.68, y: 3.15, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1540268913}
@@ -1375,18 +1376,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6496752a3bf0ca34a8cbd3634cf43037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _npcBird: {fileID: 241714612}
+  _player: {fileID: 1033499429}
+  _minScale: 0.4
+  _maxScale: 0.5
+  _scaleStep: 0.15
+  _loseDistance: 10
+  _deadParticle: {fileID: 3017757107180097522, guid: fbef473a9324eaa40a1047a87f2174ca, type: 3}
+--- !u!114 &1033499429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033499423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f0cd9f2fe5cc341bcfba0790ab04ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _rigidbody: {fileID: 1033499427}
   _animator: {fileID: 1540268911}
   _upperForce: {x: 0, y: 5}
   _leftForce: {x: -5, y: 0}
   _rightForce: {x: 5, y: 0}
-  _birdArt: {fileID: 1540268910}
-  _npcBird: {fileID: 241714612}
-  _minScale: 0.4
-  _maxScale: 0.8
-  _scaleStep: 0.15
-  _loseDistance: 5
-  _deadParticle: {fileID: 3017757107180097522, guid: fbef473a9324eaa40a1047a87f2174ca, type: 3}
+  _birdView: {fileID: 1540268913}
 --- !u!1 &1096032957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpButton: 122
   _moveButton: 120
-  _bird: {fileID: 1033499428}
+  _bird: {fileID: 1033499429}
 --- !u!4 &1304707368
 Transform:
   m_ObjectHideFlags: 0
