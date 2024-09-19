@@ -4,11 +4,14 @@ using UnityEngine.UI;
 
 public class BirdCheaker : MonoBehaviour
 {
+    [SerializeField] private Transform _npcBird;
     [SerializeField] private Player _bird;
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
     [SerializeField] private int _pointsToWin;
     [SerializeField] private Text _timerText;
     [SerializeField] private int _needTime;
+
+    [SerializeField] private float _loseDistance;
 
     bool _isRunning;
 
@@ -35,6 +38,11 @@ public class BirdCheaker : MonoBehaviour
         {
             _bird.Deactivate();
             _isRunning = false;
+        }
+
+        if ((_bird.transform.position - _npcBird.position).magnitude > _loseDistance)
+        {
+            _bird.Deactivate();
         }
     }
 

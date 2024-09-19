@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Transform _npcBird;
     [SerializeField] private Jumper _player;
 
     [Space(5)]
     [SerializeField] private float _minScale;
     [SerializeField] private float _maxScale;
     [SerializeField] private float _scaleStep;
-    [SerializeField] private float _loseDistance;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
@@ -44,16 +42,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (IsLive == false)
-            return;
-
         DownScale();
-                
-        if ((transform.position - _npcBird.position).magnitude > _loseDistance)
-        {
-            IsLive = false;
-            Deactivate();
-        }
     }
 
     private void DownScale()
