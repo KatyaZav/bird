@@ -10,7 +10,7 @@ public class InputController : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private Player _bird;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(_jumpButton))
         {
