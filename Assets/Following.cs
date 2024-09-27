@@ -6,7 +6,7 @@ public class Following : MonoBehaviour
     [SerializeField] Vector3 _offset;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         transform.position = _followingObject.position + _offset;        
     }
