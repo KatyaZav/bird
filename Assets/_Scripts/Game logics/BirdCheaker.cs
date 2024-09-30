@@ -9,7 +9,6 @@ public class BirdCheaker : MonoBehaviour
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
     [SerializeField] private int _pointsToWin;
     [SerializeField] private Text _timerText;
-    [SerializeField] private int _needTime;
 
     [SerializeField] private float _loseDistance;
 
@@ -20,7 +19,6 @@ public class BirdCheaker : MonoBehaviour
         _timerText.text = "Start";
 
         //ResetGame();
-        StartCoroutine(Timer());
     }
 
     public void ResetGame()
@@ -44,30 +42,7 @@ public class BirdCheaker : MonoBehaviour
         {
             _bird.Deactivate();
         }
-    }
-
-    private IEnumerator Timer()
-    {        
-        bool isError = false;
-
-        while (_needTime > 0)
-        {
-            if (_bird.IsLive == false)
-            {
-                isError = true;
-                break;
-            }
-
-            _needTime--;
-            _timerText.text = _needTime.ToString();
-            yield return new WaitForSeconds(1);
-        }
-
-        if (isError)
-            _timerText.text = "Lose";
-        else
-            _timerText.text = "Win!";
-    }
+    }   
 
     private bool IsInBorder(Transform obj)
     {
