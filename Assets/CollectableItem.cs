@@ -7,7 +7,7 @@ public class CollectableItem : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        MovementController player = collision.gameObject.GetComponent<MovementController>();
+        PlayerController player = collision.gameObject.GetComponent<PlayerController>();
 
         if (player != null)
         {
