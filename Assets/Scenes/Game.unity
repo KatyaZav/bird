@@ -1452,7 +1452,7 @@ MonoBehaviour:
   _pointsToWin: 1000
   _timerText: {fileID: 832322201}
   _needTime: 30
-  _loseDistance: 0
+  _loseDistance: 100
 --- !u!1 &1113552912
 GameObject:
   m_ObjectHideFlags: 0
