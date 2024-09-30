@@ -1,18 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class Timer
 {
-    // Start is called before the first frame update
-    void Start()
+    public Action TimeEnded;
+
+    private float _currentTime;
+    private float _timer;
+
+    private float _timeBetween = 1;
+
+    public Timer(float timer, float timeBetween)
     {
-        
+        _timer = 0;
+        _timeBetween = timeBetween;
+        _currentTime = timer;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        _timer += Time.deltaTime;
+
+        if (_timer > _timeBetween)
+        {
+            _timer = 0;
+            _currentTime -= _timeBetween;
+
+            Debug.Log(_currentTime);
+
+            if (_currentTime < 0)
+            {
+                TimeEnded?.Invoke();
+            }
+        }
     }
 }

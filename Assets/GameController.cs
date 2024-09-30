@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -10,10 +8,7 @@ public class GameController : MonoBehaviour
     private int _needToCollect;
     private bool _isWorking;
 
-    private int _currentTime;
-    private float _timer;
-
-    private int _second = 1;
+    private Timer _timer;
     
     private void Start()
     {
@@ -23,7 +18,9 @@ public class GameController : MonoBehaviour
         }
 
         _needToCollect = _items.Length;
-        _currentTime = _loseTime;
+
+        _timer = new Timer(_loseTime, 1);
+        _timer.TimeEnded += Lose;
 
         _isWorking = true;
     }
@@ -33,19 +30,16 @@ public class GameController : MonoBehaviour
         if (_isWorking == false)
             return;
 
-        _timer += Time.deltaTime;
+        _timer.Update();
+    }
 
-        if (_timer > _second)
+    private void OnDisable()
+    {
+        _timer.TimeEnded -= Lose;
+
+        foreach (var item in _items)
         {
-            _timer = 0;
-            _currentTime -= _second;
-            
-            Debug.Log(_currentTime);
-        
-            if (_currentTime < 0)
-            {
-                Lose();
-            }
+            item.Collected -= Collect;
         }
     }
 
