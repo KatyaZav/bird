@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -59,5 +57,10 @@ public class Player : MonoBehaviour
 
         if (transform.localScale.z > _maxScale)
             transform.localScale = Vector3.one * _maxScale;
+    }
+
+    internal void TryUseItem()
+    {
+        throw new NotImplementedException();
     }
 }

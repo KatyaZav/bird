@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 241714611}
   - component: {fileID: 241714613}
   - component: {fileID: 241714614}
+  - component: {fileID: 241714615}
   m_Layer: 0
   m_Name: bird npc
   m_TagString: Untagged
@@ -292,17 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b063b4b908c12343960e6a58f151621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _points:
-  - {fileID: 136934330}
-  - {fileID: 39419503}
-  - {fileID: 2135978130}
-  - {fileID: 605295919}
-  - {fileID: 1878312}
-  _bird: {fileID: 241714614}
-  _reactionTime: 0.1
-  _maxDirection: 1
-  _minTime: 4
-  _maxTime: 9
+  _pointMover: {fileID: 241714615}
 --- !u!114 &241714614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,12 +306,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f0cd9f2fe5cc341bcfba0790ab04ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FlyTriggerName: fly
   _rigidbody: {fileID: 241714611}
   _animator: {fileID: 962531394}
+  _birdView: {fileID: 962531393}
   _upperForce: {x: 0, y: 2}
   _leftForce: {x: -2, y: 0}
   _rightForce: {x: 2, y: 0}
-  _birdView: {fileID: 962531393}
+--- !u!114 &241714615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241714609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68ca9c30b3ad9544bfa0cb3b5a52613, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _points:
+  - {fileID: 136934330}
+  - {fileID: 39419503}
+  - {fileID: 2135978130}
+  - {fileID: 605295919}
+  - {fileID: 1878312}
+  _bird: {fileID: 241714614}
+  _reactionTime: 0.2
+  _maxDirection: 0.2
+  _minTime: 3
+  _maxTime: 8
 --- !u!1 &296618623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,12 +1329,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f0cd9f2fe5cc341bcfba0790ab04ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FlyTriggerName: fly
   _rigidbody: {fileID: 1033499427}
   _animator: {fileID: 1540268911}
+  _birdView: {fileID: 1540268913}
   _upperForce: {x: 0, y: 5}
   _leftForce: {x: -5, y: 0}
   _rightForce: {x: 5, y: 0}
-  _birdView: {fileID: 1540268913}
 --- !u!1 &1054033720
 GameObject:
   m_ObjectHideFlags: 0
