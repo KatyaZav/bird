@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] Rigidbody _rigidbody;
+    [SerializeField] private Rigidbody _rigidbody;
 
-    [SerializeField] float _speed;
-    [SerializeField] float _jumpForce;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _jumpForce;
 
     private Jumper _currentJumper;
     private Mover _currentMover;
