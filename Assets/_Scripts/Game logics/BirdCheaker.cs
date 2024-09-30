@@ -7,7 +7,6 @@ public class BirdCheaker : MonoBehaviour
     [SerializeField] private Player _bird;
     [SerializeField] private Transform _topBorder, _bottomBorder, _leftBorder, _rightBorder;
     [SerializeField] private int _pointsToWin;
-    [SerializeField] private Text _timerText;
 
     [SerializeField] private float _loseDistance;
 
@@ -15,8 +14,6 @@ public class BirdCheaker : MonoBehaviour
 
     private void Start()
     {
-        _timerText.text = "Start";
-
         //ResetGame();
     }
 

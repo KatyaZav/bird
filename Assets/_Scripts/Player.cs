@@ -3,64 +3,42 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Jumper _player;
-
-    [Space(5)]
-    [SerializeField] private float _minScale;
-    [SerializeField] private float _maxScale;
-    [SerializeField] private float _scaleStep;
+    [SerializeField] private ScaleChanger _scaleChanger;
+    [SerializeField] private Jumper _jumper;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
-
+    
     public bool IsLive {get; private set;}
 
-    public Jumper PlayerJumper  => _player; 
+    public Jumper PlayerJumper  => _jumper; 
+
+    public void StartMove()
+    {
+        _jumper.StartMove();
+    }
+    public void Deactivate()
+    {
+        Instantiate(_deadParticle, transform.position, Quaternion.identity);
+        _jumper.Deactivate();
+    }
+    public void Jump()
+    {
+        _jumper.Jump();
+        _scaleChanger.UpScale();
+    }
+    public void TryUseItem()
+    {
+        //if ()
+    }
 
     private void Awake()
     {
         IsLive = true;
     }
 
-    public void StartMove()
-    {
-        _player.StartMove();
-    }
-
-    public void Deactivate()
-    {
-        Instantiate(_deadParticle, transform.position, Quaternion.identity);
-        _player.Deactivate();
-    }
-    public void Jump()
-    {
-        _player.Jump();
-        UpScale();
-    }
-
     private void Update()
     {
-        DownScale();
-    }
-
-    private void DownScale()
-    {
-        transform.localScale -= Vector3.one * _scaleStep * Time.deltaTime;
-
-        if (transform.localScale.z < _minScale)
-            transform.localScale = Vector3.one * _minScale;
-    }
-
-    private void UpScale()
-    {
-        transform.localScale += Vector3.one * _scaleStep;
-
-        if (transform.localScale.z > _maxScale)
-            transform.localScale = Vector3.one * _maxScale;
-    }
-
-    internal void TryUseItem()
-    {
-        throw new NotImplementedException();
+        _scaleChanger.DownScale();
     }
 }
