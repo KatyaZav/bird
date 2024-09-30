@@ -1249,6 +1249,7 @@ GameObject:
   - component: {fileID: 1033499427}
   - component: {fileID: 1033499428}
   - component: {fileID: 1033499429}
+  - component: {fileID: 1033499430}
   m_Layer: 0
   m_Name: bird
   m_TagString: Untagged
@@ -1312,10 +1313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6496752a3bf0ca34a8cbd3634cf43037, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1033499429}
-  _minScale: 0.4
-  _maxScale: 0.6
-  _scaleStep: 0.15
+  _scaleChanger: {fileID: 0}
+  _jumper: {fileID: 0}
   _deadParticle: {fileID: 3017757107180097522, guid: fbef473a9324eaa40a1047a87f2174ca, type: 3}
 --- !u!114 &1033499429
 MonoBehaviour:
@@ -1336,6 +1335,21 @@ MonoBehaviour:
   _upperForce: {x: 0, y: 5}
   _leftForce: {x: -5, y: 0}
   _rightForce: {x: 5, y: 0}
+--- !u!114 &1033499430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033499423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ac90795b7c8b8458e409f3fe5c27c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minScale: 0.4
+  _maxScale: 0.6
+  _scaleStep: 0.15
 --- !u!1 &1054033720
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,7 +1433,6 @@ MonoBehaviour:
   _leftBorder: {fileID: 1898533694}
   _rightBorder: {fileID: 418702788}
   _pointsToWin: 1000
-  _timerText: {fileID: 0}
   _loseDistance: 100
 --- !u!1 &1113552912
 GameObject:
