@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
         _currentMover = new Mover(_speed, _rigidbody);
     }
 
-    // Update is called once per frame
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))

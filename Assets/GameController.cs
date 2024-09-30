@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private CollectableItem[] _items;
-    [SerializeField] int _loseTime;
+    [SerializeField] private int _loseTime;
 
     private int _needToCollect;
     private bool _isWorking;
@@ -14,8 +14,7 @@ public class GameController : MonoBehaviour
     private float _timer;
 
     private int _second = 1;
-
-    // Start is called before the first frame update
+    
     private void Start()
     {
         foreach (var item in _items)
@@ -29,7 +28,6 @@ public class GameController : MonoBehaviour
         _isWorking = true;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         if (_isWorking == false)
