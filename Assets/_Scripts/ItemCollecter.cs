@@ -21,8 +21,8 @@ public class ItemCollecter : MonoBehaviour
         if (_inventory.IsEmpty)
         {
             SetToPoint(item, _inventoryPoint);
-            
-            _inventory.AddItem(item);            
+
+            _inventory.AddItem(item);                           
             item.Get();
         }
     }

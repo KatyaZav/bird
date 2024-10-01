@@ -8,13 +8,21 @@ public class Player : MonoBehaviour
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
-    
+
+    [Space(10), Header("Settings")]
+    [SerializeField] private int _health; 
+
     private Inventory _inventory;
     
     public bool IsLive {get; private set;}
 
     public Jumper PlayerJumper  => _jumper; 
     public Inventory Inventory => _inventory;
+
+    public void AddHealth(int health)
+    {
+        _health += health;
+    }
 
     public void AddSpeed(float _coefficient)
     {
