@@ -7,7 +7,7 @@ public abstract class BaseItem : MonoBehaviour
 
     private bool _isCollected = false;
 
-    public virtual void Use()
+    public virtual void Use(GameObject owner)
     {
         Debug.Log($"Использован элемент {gameObject.name}");
 

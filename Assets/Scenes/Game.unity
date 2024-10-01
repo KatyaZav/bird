@@ -1780,6 +1780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collectEffect: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
   _useEffect: {fileID: 19800000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+  _coefficient: 0.1
 --- !u!4 &1165371833
 Transform:
   m_ObjectHideFlags: 0

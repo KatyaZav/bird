@@ -16,6 +16,11 @@ public class Player : MonoBehaviour
     public Jumper PlayerJumper  => _jumper; 
     public Inventory Inventory => _inventory;
 
+    public void AddSpeed(float _coefficient)
+    {
+        _jumper.MultiplateSpeed(1+_coefficient);
+    }
+
     public void StartMove()
     {
         _jumper.StartMove();

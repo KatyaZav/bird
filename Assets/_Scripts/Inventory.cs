@@ -16,11 +16,11 @@ public class Inventory
         _slot.SetItem(item);
     }
 
-    public bool TryUseItem()
+    public bool TryUseItem(GameObject owner)
     {
         if (_slot.HasItem)
         {
-            UseItem();
+            UseItem(owner);
             return true;
         }
 
@@ -28,9 +28,9 @@ public class Inventory
         return false;
     }
 
-    public void UseItem()
+    public void UseItem(GameObject owner)
     {
         BaseItem item = _slot.GetItem();
-        item.Use();
+        item.Use(owner);
     }
 }

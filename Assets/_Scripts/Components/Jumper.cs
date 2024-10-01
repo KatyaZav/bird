@@ -17,6 +17,13 @@ public class Jumper : MonoBehaviour
 
     public Vector3 Velocity => _rigidbody.velocity;
 
+    public void MultiplateSpeed(float coefficient)
+    {
+        _upperForce *= coefficient;
+        _leftForce *= coefficient;
+        _rightForce *= coefficient;
+    }
+
     public void Jump()
     {
         MoveWithResetVelocity(_upperForce);

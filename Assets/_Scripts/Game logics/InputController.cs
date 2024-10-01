@@ -25,7 +25,7 @@ public class InputController : MonoBehaviour
 
         if (Input.GetKeyDown(_useItemButton))
         {
-            _bird.Inventory.TryUseItem();
+            _bird.Inventory.TryUseItem(_bird.gameObject);
         }
     }
 }
