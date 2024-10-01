@@ -1,63 +1,59 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Jumper _player;
-
-    [Space(5)]
-    [SerializeField] private float _minScale;
-    [SerializeField] private float _maxScale;
-    [SerializeField] private float _scaleStep;
+    [SerializeField] private ScaleChanger _scaleChanger;
+    [SerializeField] private Jumper _jumper;
+    [SerializeField] private ItemCollecter _itemCollecter;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
 
+    [Space(10), Header("Settings")]
+    [SerializeField] private int _health; 
+
+    private Inventory _inventory;
+    
     public bool IsLive {get; private set;}
 
-    public Jumper PlayerJumper  => _player; 
+    public Jumper PlayerJumper  => _jumper; 
+    public Inventory Inventory => _inventory;
 
-    private void Awake()
+    public void AddHealth(int health)
     {
-        IsLive = true;
+        _health += health;
+    }
+
+    public void AddSpeed(float _coefficient)
+    {
+        _jumper.MultiplateSpeed(1+_coefficient);
     }
 
     public void StartMove()
     {
-        _player.StartMove();
+        _jumper.StartMove();
     }
-
     public void Deactivate()
     {
         Instantiate(_deadParticle, transform.position, Quaternion.identity);
-        _player.Deactivate();
+        _jumper.Deactivate();
     }
     public void Jump()
     {
-        _player.Jump();
-        UpScale();
+        _jumper.Jump();
+        _scaleChanger.UpScale();
+    }
+
+    private void Awake()
+    {
+        IsLive = true;
+
+        _inventory = new Inventory(new InventorySlot());
+        _itemCollecter.Init(_inventory);
     }
 
     private void Update()
     {
-        DownScale();
-    }
-
-    private void DownScale()
-    {
-        transform.localScale -= Vector3.one * _scaleStep * Time.deltaTime;
-
-        if (transform.localScale.z < _minScale)
-            transform.localScale = Vector3.one * _minScale;
-    }
-
-    private void UpScale()
-    {
-        transform.localScale += Vector3.one * _scaleStep;
-
-        if (transform.localScale.z > _maxScale)
-            transform.localScale = Vector3.one * _maxScale;
+        _scaleChanger.DownScale();
     }
 }

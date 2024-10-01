@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class Jumper : MonoBehaviour
 {
-    private const string FlyTriggerName = "fly";
-
     [Header("Settings")]
+    [SerializeField] private string FlyTriggerName = "fly";
+    
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Transform _birdView;
 
+    [Header("Fly Force")]
     [SerializeField] private Vector2 _upperForce;
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
 
-    [SerializeField] private Transform _birdView;
 
     public Vector3 Velocity => _rigidbody.velocity;
+
+    public void MultiplateSpeed(float coefficient)
+    {
+        _upperForce *= coefficient;
+        _leftForce *= coefficient;
+        _rightForce *= coefficient;
+    }
 
     public void Jump()
     {

@@ -3,8 +3,9 @@ using UnityEngine;
 public class InputController : MonoBehaviour
 {
     [Header("Keys")]
-    [SerializeField] private KeyCode _jumpButton = KeyCode.Space;
+    [SerializeField] private KeyCode _jumpButton = KeyCode.X;
     [SerializeField] private KeyCode _moveButton = KeyCode.Z;
+    [SerializeField] private KeyCode _useItemButton = KeyCode.F;
 
     [Space(10)]
     [Header("Settings")]
@@ -20,6 +21,11 @@ public class InputController : MonoBehaviour
         if (Input.GetKeyDown(_moveButton))
         {
             _bird.PlayerJumper.Swipe();
+        }
+
+        if (Input.GetKeyDown(_useItemButton))
+        {
+            _bird.Inventory.TryUseItem(_bird.gameObject);
         }
     }
 }
