@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public abstract class BaseItem : MonoBehaviour
@@ -14,7 +11,7 @@ public abstract class BaseItem : MonoBehaviour
     {
         Debug.Log($"Использован элемент {gameObject.name}");
 
-        Instantiate(_useEffect, transform, true);
+        Instantiate(_useEffect, transform.position, Quaternion.identity, null);
         Destroy(gameObject);
     }
 
@@ -29,6 +26,6 @@ public abstract class BaseItem : MonoBehaviour
         _isCollected = true;
         Debug.Log($"Собран элемент {gameObject.name}");
 
-        Instantiate(_collectEffect, transform, true);
+        Instantiate(_collectEffect, transform.position, Quaternion.identity, null);
     }
 }

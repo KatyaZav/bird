@@ -8,7 +8,7 @@ public class InventorySlot
 
     public void SetItem(BaseItem item)
     {
-        if (item != null)
+        if (_item != null)
         {
             Debug.LogError("Слот уже заполнен");
             return;

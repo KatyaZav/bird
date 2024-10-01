@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -15,6 +14,7 @@ public class Player : MonoBehaviour
     public bool IsLive {get; private set;}
 
     public Jumper PlayerJumper  => _jumper; 
+    public Inventory Inventory => _inventory;
 
     public void StartMove()
     {
@@ -29,10 +29,6 @@ public class Player : MonoBehaviour
     {
         _jumper.Jump();
         _scaleChanger.UpScale();
-    }
-    public void TryUseItem()
-    {
-        //if ()
     }
 
     private void Awake()
