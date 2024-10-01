@@ -5,9 +5,12 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private ScaleChanger _scaleChanger;
     [SerializeField] private Jumper _jumper;
+    [SerializeField] private ItemCollecter _itemCollecter;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
+    
+    private Inventory _inventory;
     
     public bool IsLive {get; private set;}
 
@@ -35,6 +38,9 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         IsLive = true;
+
+        _inventory = new Inventory(new InventorySlot());
+        _itemCollecter.Init(_inventory);
     }
 
     private void Update()

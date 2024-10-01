@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InventorySlot
 {
-    private BaseItem _item;
+    private BaseItem _item = null;
 
     public bool HasItem => _item != null;
 
