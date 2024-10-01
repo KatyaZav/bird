@@ -15,6 +15,7 @@ public abstract class BaseItem : MonoBehaviour
         Debug.Log($"Использован элемент {gameObject.name}");
 
         Instantiate(_useEffect, transform, true);
+        Destroy(gameObject);
     }
 
     public virtual void Get() 

@@ -30,6 +30,6 @@ public class ItemCollecter : MonoBehaviour
     private void SetToPoint(BaseItem item, Transform point)
     {
         item.transform.parent = point;
-        item.transform.position = Vector2.zero;
+        item.transform.localPosition = Vector3.zero;
     }
 }

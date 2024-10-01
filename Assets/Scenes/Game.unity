@@ -1778,8 +1778,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743c0309d961e9e4da0786fc5088df06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collectEffect: {fileID: 0}
-  _useEffect: {fileID: 0}
+  _collectEffect: {fileID: 198405478074982118, guid: 4adffb0018aeda44e9263f901167af1f, type: 3}
+  _useEffect: {fileID: 19800000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
 --- !u!4 &1165371833
 Transform:
   m_ObjectHideFlags: 0
