@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootItem : BaseItem
+public class ShootItem : ItemBase
 {
     [SerializeField] private Bullet _bullet;
     [SerializeField] private float _coefficient;

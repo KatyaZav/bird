@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class BaseItem : MonoBehaviour
+public abstract class ItemBase : MonoBehaviour
 {
     [SerializeField] ParticleSystem _collectEffect;
     [SerializeField] ParticleSystem _useEffect;
@@ -15,7 +15,7 @@ public abstract class BaseItem : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public virtual void Get() 
+    public virtual void OnCollect() 
     {
         if (_isCollected)
         { 

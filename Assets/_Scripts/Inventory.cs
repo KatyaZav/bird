@@ -11,7 +11,7 @@ public class Inventory
 
     public bool IsEmpty => _slot.HasItem == false;
 
-    public void AddItem(BaseItem item)
+    public void AddItem(ItemBase item)
     {
         _slot.SetItem(item);
     }
@@ -30,7 +30,7 @@ public class Inventory
 
     public void UseItem(GameObject owner)
     {
-        BaseItem item = _slot.GetItem();
+        ItemBase item = _slot.GetItem();
         item.Use(owner);
     }
 }

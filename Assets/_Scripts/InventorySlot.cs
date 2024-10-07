@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class InventorySlot
 {
-    private BaseItem _item = null;
+    private ItemBase _item = null;
 
     public bool HasItem => _item != null;
 
-    public void SetItem(BaseItem item)
+    public void SetItem(ItemBase item)
     {
         if (_item != null)
         {
@@ -17,9 +17,9 @@ public class InventorySlot
         _item = item;
     } 
 
-    public BaseItem GetItem()
+    public ItemBase GetItem()
     {
-        BaseItem currentItem = _item;
+        ItemBase currentItem = _item;
         _item = null;
         return currentItem; 
     }

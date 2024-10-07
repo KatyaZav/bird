@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthUpItem : BaseItem
+public class HealthUpItem : ItemBase
 {
     [SerializeField] private int _coefficient;
 

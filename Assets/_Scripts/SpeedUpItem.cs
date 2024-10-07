@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpeedUpItem : BaseItem
+public class SpeedUpItem : ItemBase
 {
     [SerializeField] private float _coefficient;
 

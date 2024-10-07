@@ -13,7 +13,7 @@ public class ItemCollecter : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        BaseItem item = collision.GetComponent<BaseItem>();
+        ItemBase item = collision.GetComponent<ItemBase>();
 
         if (item == null)
             return;
@@ -23,11 +23,11 @@ public class ItemCollecter : MonoBehaviour
             SetToPoint(item, _inventoryPoint);
 
             _inventory.AddItem(item);                           
-            item.Get();
+            item.OnCollect();
         }
     }
 
-    private void SetToPoint(BaseItem item, Transform point)
+    private void SetToPoint(ItemBase item, Transform point)
     {
         item.transform.parent = point;
         item.transform.localPosition = Vector3.zero;
