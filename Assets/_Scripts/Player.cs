@@ -5,12 +5,10 @@ public class Player : MonoBehaviour
     [SerializeField] private ScaleChanger _scaleChanger;
     [SerializeField] private Jumper _jumper;
     [SerializeField] private ItemCollecter _itemCollecter;
+    [SerializeField] private Health _health;
 
     [Space(10), Header("Particles")]
     [SerializeField] private GameObject _deadParticle;
-
-    [Space(10), Header("Settings")]
-    [SerializeField] private int _health; 
 
     private Inventory _inventory;
     
@@ -18,11 +16,6 @@ public class Player : MonoBehaviour
 
     public Jumper PlayerJumper  => _jumper; 
     public Inventory Inventory => _inventory;
-
-    public void AddHealth(int health)
-    {
-        _health += health;
-    }
 
     public void AddSpeed(float _coefficient)
     {
