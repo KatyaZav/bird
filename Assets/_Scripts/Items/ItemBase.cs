@@ -7,8 +7,19 @@ public abstract class ItemBase : MonoBehaviour
 
     private bool _isCollected = false;
 
+    public virtual bool CanPick(GameObject owner)
+    {
+        return owner.GetComponent<ItemCollecter>() != null;
+    } 
+
     public virtual void Use(GameObject owner)
     {
+        if (_isCollected)
+        {
+            Debug.LogError("Предмет не подобран, поэтому не может быть использован!");
+            return;
+        }
+
         Debug.Log($"Использован элемент {gameObject.name}");
 
         Instantiate(_useEffect, transform.position, Quaternion.identity, null);
@@ -19,7 +30,7 @@ public abstract class ItemBase : MonoBehaviour
     {
         if (_isCollected)
         { 
-            Debug.Log($"Объект {gameObject.name}  уже собран");
+            Debug.LogError($"Объект {gameObject.name}  уже собран");
             return;
         }    
 
