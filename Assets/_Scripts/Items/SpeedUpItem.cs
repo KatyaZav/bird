@@ -8,13 +8,7 @@ public class SpeedUpItem : ItemBase
     {
         base.Use(owner);
 
-        Player player = owner.GetComponent<Player>();
-
-        if (player == null)
-        {
-            Debug.LogError("Can't find player script");
-            return;
-        }
+        Jumper player = owner.GetComponent<Jumper>();     
 
         player.AddSpeed(_coefficient);
     }

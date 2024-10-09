@@ -13,20 +13,19 @@ public class Jumper : MonoBehaviour
     [SerializeField] private Vector2 _upperForce;
     [SerializeField] private Vector2 _leftForce;
     [SerializeField] private Vector2 _rightForce;
+    [SerializeField] private float _speed = 1;
 
 
     public Vector3 Velocity => _rigidbody.velocity;
 
-    public void MultiplateSpeed(float coefficient)
+    public void AddSpeed(float coefficient)
     {
-        _upperForce *= coefficient;
-        _leftForce *= coefficient;
-        _rightForce *= coefficient;
+        _speed += coefficient;
     }
 
     public void Jump()
     {
-        MoveWithResetVelocity(_upperForce);
+        MoveWithResetVelocity(_upperForce * _speed);
     }
 
     public void Swipe()
@@ -41,13 +40,13 @@ public class Jumper : MonoBehaviour
 
     public void TurnLeft()
     {
-        MoveWithResetVelocity(_leftForce);
+        MoveWithResetVelocity(_leftForce * _speed);
         SwipeSide();
     }
 
     public void TurnRight()
     {
-        MoveWithResetVelocity(_rightForce);
+        MoveWithResetVelocity(_rightForce * _speed);
         SwipeSide();
     }
 
