@@ -9,7 +9,7 @@ public abstract class ItemBase : MonoBehaviour
 
     public virtual bool CanPick(GameObject owner)
     {
-        return owner.GetComponent<ItemCollecter>() != null;
+        return owner.GetComponent<ItemCollector>() != null;
     } 
 
     public virtual void Use(GameObject owner)

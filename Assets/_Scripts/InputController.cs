@@ -10,6 +10,7 @@ public class InputController : MonoBehaviour
     [Space(10)]
     [Header("Settings")]
     [SerializeField] private Player _bird;
+    [SerializeField] private ItemCollector _itemCollector;
 
     private void Update()
     {
@@ -25,7 +26,7 @@ public class InputController : MonoBehaviour
 
         if (Input.GetKeyDown(_useItemButton))
         {
-            _bird.Inventory.TryUseItem(_bird.gameObject);
+            _itemCollector.UseItem();
         }
     }
 }
