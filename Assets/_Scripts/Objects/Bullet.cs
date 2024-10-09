@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] Rigidbody2D _rigidbody;
-    [SerializeField] Vector2 _velocity;
+    [SerializeField] float _force;
     
 
-    public void Launch(float coefficient)
+    public void Launch(Vector2 direction)
     {
-        _rigidbody.AddForce(_velocity * coefficient, ForceMode2D.Impulse);
+        _rigidbody.AddForce(_force * direction, ForceMode2D.Impulse);
     }
 }
