@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     public void AddSpeed(float _coefficient)
     {
-        _jumper.MultiplateSpeed(1+_coefficient);
+        _jumper.AddSpeed(_coefficient);
     }
 
     public void StartMove()
@@ -41,8 +41,7 @@ public class Player : MonoBehaviour
     {
         IsLive = true;
 
-        _inventory = new Inventory(new InventorySlot());
-        _itemCollecter.Init(_inventory);
+        _itemCollecter.Init();
     }
 
     private void Update()

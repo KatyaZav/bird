@@ -15,7 +15,6 @@ public class Jumper : MonoBehaviour
     [SerializeField] private Vector2 _rightForce;
     [SerializeField] private float _speed = 1;
 
-
     public Vector3 Velocity => _rigidbody.velocity;
 
     public void AddSpeed(float coefficient)
