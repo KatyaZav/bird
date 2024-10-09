@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private ScaleChanger _scaleChanger;
     [SerializeField] private Jumper _jumper;
-    [SerializeField] private ItemCollecter _itemCollecter;
+    [SerializeField] private ItemCollector _itemCollecter;
     [SerializeField] private Health _health;
 
     [Space(10), Header("Particles")]
