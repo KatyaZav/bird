@@ -30,6 +30,12 @@ public class ItemCollector : MonoBehaviour
         if (item == null)
             return;
 
+        if (item.CanPick(gameObject) == false)
+        {
+            Debug.LogError("This gameObject can't get this item");
+            return;
+        }
+
         if (_inventory.IsEmpty)
         {
             _inventory.SetItem(item);                           
