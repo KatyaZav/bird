@@ -23,7 +23,7 @@ public class Inventory
         _item = item;
 
         _item.transform.parent = _itemPlace;
-        _item.transform.position = Vector3.zero;
+        _item.transform.localPosition = Vector3.zero;
     }
 
     public ItemBase GetItem()

@@ -41,5 +41,9 @@ public class ItemCollector : MonoBehaviour
             _inventory.SetItem(item);                           
             item.OnCollect();
         }
+        else
+        {
+            Debug.Log("Can't pick item. Inventory are full");
+        }
     }
 }

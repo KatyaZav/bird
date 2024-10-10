@@ -22,7 +22,7 @@ public class ShootItem : ItemBase
             return;
         }
 
-        Bullet bullet = Instantiate(_bullet, shootPoint.ShootPoint.position, Quaternion.identity, null);     
-        bullet.Launch(_coefficient * shootPoint.ShootPoint.position);
+        Bullet bullet = Instantiate(_bullet, shootPoint.ShootPoint.position, Quaternion.identity, null);
+        bullet.Launch(_coefficient * shootPoint.ShootPoint.forward);
     }
 }

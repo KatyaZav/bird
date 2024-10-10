@@ -14,7 +14,7 @@ public abstract class ItemBase : MonoBehaviour
 
     public virtual void Use(GameObject owner)
     {
-        if (_isCollected)
+        if (_isCollected == false)
         {
             Debug.LogError("Предмет не подобран, поэтому не может быть использован!");
             return;
